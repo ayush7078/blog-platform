@@ -9,7 +9,7 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-  origin: 'https://blogger-platform-app.netlify.app/api', // Allow only requests from this frontend origin
+  origin: 'https://blogger-platform-app.netlify.app/', // Allow only requests from this frontend origin
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
   credentials: true, // If you're using cookies or authentication headers
 };
