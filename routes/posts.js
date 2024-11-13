@@ -18,6 +18,8 @@ router.post("/", auth, async (req, res) => {
 // Get all posts (public)
 router.get("/", async (req, res) => {
   try {
+
+   
     const posts = await Post.find()
       .populate("author", "username")
       .sort({ createdAt: -1 });
