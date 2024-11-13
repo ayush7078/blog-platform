@@ -6,7 +6,15 @@ require("dotenv").config();
 connectDB();
 
 const app = express();
-app.use(cors());
+
+// CORS configuration
+const corsOptions = {
+  origin: 'http://localhost:3000', // Allow only requests from this frontend origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
+  credentials: true, // If you're using cookies or authentication headers
+};
+
+app.use(cors(corsOptions)); // Use CORS with custom configuration
 app.use(express.json());
 
 app.use("/api/auth", require("./routes/auth"));
