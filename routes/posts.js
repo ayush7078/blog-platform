@@ -65,12 +65,15 @@ router.put("/:id", auth, async (req, res) => {
 // Delete a post (owner only)
 router.delete("/:id", auth, async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id);
+       console.log("hello", req.params.id)
+    const post = await Post.findById({_id : req.params.id});
+    console.log("postr", post)
     if (!post) return res.status(404).json({ message: "Post not found" });
     if (post.author.toString() !== req.user.id)
       return res.status(403).json({ message: "Unauthorized" });
-
-    await post.remove();
+    
+    await Post.findOneAndDelete({_id : req.params.id});
+   
     res.json({ message: "Post deleted" });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
